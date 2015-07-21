@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoteBook">
+<head>
+	<meta charset="UTF-8">
+	<title>QuoteBook</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body ng-controller="mainController as model">
+	<div class="page-header container">
+		<div class="col-md-1"></div>
+		<h1 class="col-md-10">QuoteBook <small>because words are cool</small></h1>
+		<div class="col-md-1"></div>
+	</div>
+
+
+	<div class="container">
+		<ul class="list-group" ng-repeat="quote in model.getQuotes() | filter:author | filter:quote">
+			<li class="list-group-item"> <button type="submit" ng-click="model.removeQuote($index)">x</button>&nbsp <span class="badge"> {{ quote.author }} </span>{{ quote.text }} </li>
+		</ul>
+		
+	</div>
+
+	<hr>
+
+	<div class="container">
+		<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default" ng-click="model.addQuote({text: quote, author: author }); quote = ''; author = ''">Add Quote</button>
+			</div>
+			<!-- <div class="btn-group" role="group">   who needs this with an 'x' button?
+				<button type="button" class="btn btn-default" ng-click="model.removeQuote(isSelected)">Remove Selected Quotes</button>
+			</div> -->
+		</div>
+	</div>
+
+	<br>
+	
+	<div class="container">
+		<p>Or just Search by text or author:</p>
+		<div class="form-group">
+			<label for="auth">Author:</label>
+			<input type="text" class="form-control" id="auth" ng-model="author">
+		</div>
+		<div class="form-group">
+			<label for="quote">Quote:</label>
+			<input type="text" class="form-control" id="quote" ng-model="quote">
+		</div>
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript" src="js/service.js"></script>
+</body>
+</html>
